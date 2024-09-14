@@ -1,0 +1,11 @@
+.divbutton{
+    display:flexbox;
+    -ms-grid-row-align: center;
+    margin-top: 20px;
+}
+
+.buttons{
+    display:flexbox;
+    -ms-grid-row-align: center;
+    margin-top: 15px;
+}

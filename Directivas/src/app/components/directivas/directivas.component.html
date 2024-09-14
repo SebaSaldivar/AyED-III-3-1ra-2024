@@ -1,0 +1,117 @@
+<h1>Interpolación y Directivas</h1>
+
+<h3>Esta es un interpolación desde mi controlador: {{ nombre }} </h3>
+
+<h3  [ngStyle]="{'color': numero < 5 ? 'green' : 'red', 'font-size': numero === 2 ? '28px' : '18px'}">Esta es una directiva de atributo con ngStyle</h3>
+
+<h3  [ngClass]=" numero < 5 ? 'fondo-rojo' : 'fondo-azul' ">Esta es una directiva de atributo con ngClass</h3>
+
+<ul>
+    <li *ngFor="let estudiante of listaEstudiantes">{{estudiante.nombre}}</li>
+</ul>
+
+
+
+
+<hr>
+<table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>Legajo</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Situación</th>
+        <th>Fecha de Inscripción</th>
+        <th>Carrera</th>
+        <th>Área</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of listaEstudiantes">
+        <td>{{estudiante.legajo}}</td>
+        <td>{{estudiante.nombre}}</td>
+        <td>{{estudiante.apellido}}</td>
+        <td *ngIf="estudiante.regular">Regular</td>
+        <td *ngIf="!estudiante.regular">Libre</td>
+        <td>{{estudiante.fecha_inscripcion | date }}</td>
+        <td>{{estudiante.carrera}}</td>
+       <!--  <td>
+            <span *ngIf="estudiante.carrera === 'Angular' || estudiante.carrera === 'Javascript'">Front-end</span>
+            <span *ngIf="estudiante.carrera === 'Java'">Back-end</span>
+        </td> -->
+        <td>{{ estudiante.carrera === 'Angular' || estudiante.carrera === 'Javascript' ? 'Front-end' : estudiante.carrera === 'Java' ? 'Back-end' : '' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <div *ngFor="let estudiante of listaEstudiantes">
+    <div #elemento *ngIf="estudiante.regular; then trueBlock else falseBlock">
+    </div>
+
+    <ng-template #trueBlock>
+    <p>Contenido que se muestra si la condición es verdadera</p>
+    </ng-template>
+
+    <ng-template #falseBlock>
+    <p>Contenido que se muestra si la condición es falsa</p>
+    </ng-template>
+
+    </div >
+
+    <hr>
+    <div [ngSwitch]="cantAlumnos">
+        <h3 *ngSwitchCase=6>Inscripciones normales</h3>
+        <h3 *ngSwitchCase=15>Inscripciones altas</h3>
+        <h3 *ngSwitchCase=25>Sobrepoblación de alumnos</h3>
+        <h3 *ngSwitchDefault>Sin Inscripciones</h3>
+      </div>
+<hr>
+<form>
+  <div class="row"> <!-- [(ngModel)] -->
+    <div class="col">
+      <input type="number" [(ngModel)]="numero1" name="numero1" placeholder="numero 1">
+    </div>
+    <div class="col">
+      <input type="number" [(ngModel)]="numero2" name="numero2" placeholder="numero 2">
+    </div>
+    <div class="col">
+      <input type="number" [(ngModel)]="resultado" name="resultado" placeholder="Resultado">
+    </div>
+    <div class="col">
+      <button (click)="Calcular()">Sumar</button>
+    </div>
+  </div>
+</form>
+<hr>
+<form>
+  <div class="row">
+    <div class="col">
+      <input type="number" [(ngModel)]="estudianteVacio.legajo" name="legajo" placeholder="Legajo">
+    </div>
+    <div class="col">
+      <input type="text" [(ngModel)]="estudianteVacio.nombre" name="nombre" placeholder="nombre">
+    </div>
+    <div class="col">
+      <input type="text" [(ngModel)]="estudianteVacio.apellido" name="apellido" placeholder="apellido">
+    </div>
+    <div class="col">
+      <input type="text" [(ngModel)]="estudianteVacio.carrera" name="carrera" placeholder="carrera">
+    </div>
+    <div class="col">
+      <input type="checkbox" [(ngModel)]="estudianteVacio.regular" name="regular">Regular
+    </div>
+    <div class="col">
+      <input type="date" [(ngModel)]="estudianteVacio.fecha_inscripcion" name="fecha">
+    </div>
+    <div class="col">
+      <button (click)="Agregar()">Agregar</button>
+    </div>
+  </div>
+</form>
+<hr>
+<pre>
+  {{ listaEstudiantes | json }}
+</pre>
+  

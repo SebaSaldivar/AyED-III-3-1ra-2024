@@ -1,0 +1,35 @@
+<h1>Componente Hijo</h1>
+
+<pre>
+    {{ misEstudiantesHijo | json }}
+</pre>
+
+<form>
+  <div class="row">
+    <div class = "col">
+      <input type="number" [(ngModel)]="estudianteActual.legajo" name="legajo" placeholder="Legajo"> 
+    </div>
+    <div class = "col">
+      <input type="text" [(ngModel)]="estudianteActual.nombre" name="nombre" placeholder="Nombre">
+    </div>
+    <div class = "col">
+      <input type="text" [(ngModel)]="estudianteActual.apellido" name="apellido" placeholder="Apellido"> 
+    </div>
+    <div class = "col">
+      <input type="text" [(ngModel)]="estudianteActual.carrera" name="carrera" placeholder="Carrera"> 
+    </div>
+    <div class = "col">
+      <input type="checkbox" [(ngModel)]="estudianteActual.regular" name="regular"> Regular 
+    </div>
+    <div class = "col">
+      <input type="date" [(ngModel)]="estudianteActual.fecha_inscripcion" name="fecha" [value]="estudianteActual.fecha_inscripcion | date:'yyyy-MM-dd'"> 
+    </div>
+    <div class = "col">
+      <button (click)="AgregarEstudiante()">Agregar Alumno</button>  
+    </div>
+  </div>
+</form>
+
+<hr>
+
+

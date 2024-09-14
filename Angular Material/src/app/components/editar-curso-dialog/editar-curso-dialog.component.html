@@ -1,0 +1,18 @@
+<h1 mat-dialog-title class="dialog-title">Editar curso</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formulario" class="dialog-form">
+        <div class="form-row">
+            <input type="text" placeholder="Nombre" formControlName="nombre" class="form-input">
+        </div>
+        <div class="form-row">
+            <input type="text" placeholder="Comision" formControlName="comision" class="form-input">
+        </div>
+        <div class="form-row">
+            <input type="text" placeholder="Profesor" formControlName="profesor" class="form-input">
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="cerrarModal()">Cerrar</button>
+    <button mat-flat-button class="edit-button">Editar</button>
+</div>

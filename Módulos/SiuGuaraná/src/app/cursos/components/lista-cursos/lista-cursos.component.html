@@ -1,0 +1,45 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let curso of cursos">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{ curso.nombre }}</mat-card-title>
+            <mat-card-subtitle
+              >Comisión: {{ curso.comision }}</mat-card-subtitle
+            >
+          </mat-card-header>
+          <img class="card-image" mat-card-image src="https://cdn.pixabay.com/photo/2012/10/29/15/36/ball-63527_1280.jpg"/>
+          <mat-card-content>
+            <p>
+              Fecha de Inicio: {{ curso.fechaInicio | date : "dd/MM/yyyy" }}
+            </p>
+            <p>
+              Profesor: {{ curso.profesor.nombre }} {{ curso.profesor.apellido }}
+            </p>
+             <p [appBooleanStyle]="curso.presencial">     
+            {{ curso.presencial | booleanToText : "Presencial" : "Virtual" }} 
+              <!-- {{ curso.presencial }} -->
+            </p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="EditarCurso(curso)"
+            >
+              Editar
+            </button>
+            <button mat-stroked-button color="warn" (click)="EliminarCurso(curso)">
+              Eliminar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <button mat-raised-button color="primary" (click)="AgregarCurso()">
+    Agregar curso
+  </button>
+</body>

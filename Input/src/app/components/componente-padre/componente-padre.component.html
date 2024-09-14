@@ -1,0 +1,6 @@
+<h2>Componente Padre</h2>
+
+<!-- <pre>
+    {{misEstudiantesPadre | json }}
+</pre> -->
+<app-componente-hijo [misEstudiantesHijo]="misEstudiantesPadre" (EventoEstudianteHijo)="ActualizarAlumnoPadre($event)"></app-componente-hijo>

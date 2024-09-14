@@ -1,0 +1,39 @@
+<h1>Lista de Alumnos</h1>
+<hr>
+<div class="container py-4 bg-light">
+
+    <div class="row row-cols-4 g-4">
+      
+      <div class="col" *ngFor="let estudiante of listaEstudiantes">
+        <div class="card shadow">
+            <div class="card-body">
+            <h5 class="card-title">{{estudiante.nombre}} {{estudiante.apellido}}</h5>     
+            <p> Nota Final: {{estudiante.notaFinal}}</p>         
+                        
+            <h6 [ngClass]="estudiante.estado == 'Aprobado' ? 'card-subtitle text-success' : 'card-subtitle text-danger'" >{{estudiante.estado}}</h6>            
+            
+            <div [ngSwitch]="estudiante.estado">
+              <div *ngSwitchCase="'Aprobado'">
+              <button type="button" class="btn btn-secondary btn-sm buttons" disabled>Cargar Recuperatorio</button>   
+              </div> 
+              <div *ngSwitchCase="'Desaprobado'">
+                <button type="button" class="btn btn-secondary btn-sm buttons">Cargar Recuperatorio</button>   
+                </div> 
+                <div *ngSwitchDefault>
+                  <button type="button" class="btn btn-secondary btn-sm buttons">Cargar Recuperatorio</button>   
+                  </div> 
+            </div>
+            <button type="button" class="btn btn-primary btn-sm buttons" >Cerrar Nota</button> 
+            <button type="button" class="btn btn-info btn-sm buttons" *ngIf="estudiante.notaFinal > 8">Postular como ayudante de cátedra</button>        
+            
+          </div>    
+        </div>
+      </div>
+  
+  
+    </div>
+  
+  
+  </div>
+  
+  

@@ -1,0 +1,60 @@
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th>Legajo</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Situación</th>
+      <th>Fecha de Inscripción</th>
+      <th>Carrera</th>
+      <th>Área</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudiante of misEstudiantesHijo">
+      <td>{{estudiante.legajo}}</td>
+      <td>{{estudiante.nombre}}</td>
+      <td>{{estudiante.apellido}}</td>
+      <td *ngIf="estudiante.regular">Regular</td>
+      <td *ngIf="!estudiante.regular">No Regular</td>
+      <td>{{estudiante.fecha_inscripcion | date}}</td>
+      <td>{{estudiante.carrera}}</td>
+      <td>
+          <span *ngIf="estudiante.carrera === 'Angular' || estudiante.carrera === 'Javascript'">Front-end</span>
+          <span *ngIf="estudiante.carrera === 'Java' || estudiante.carrera === 'NodeJs' || estudiante.carrera === 'MySQL'">Back-end</span>
+      </td>
+      <!-- <td>{{ estudiante.carrera === 'Angular' || estudiante.carrera === 'Javascript' ? 'Front-end' : estudiante.carrera === 'Java' ? 'Back-end' : '' }}</td> -->
+    </tr>
+  </tbody>
+</table>
+
+<h5> Agregamos Alumno con @Input, @Output y ngModel desde Componente hijo</h5>
+<form>
+  <div class="row">
+    <div class = "col">
+      <input type="number" [(ngModel)]="estudianteActual.legajo" name="legajo" placeholder="Legajo"> 
+    </div>
+    <div class = "col">
+      <input type="text" [(ngModel)]="estudianteActual.nombre" name="nombre" placeholder="Nombre">
+    </div>
+    <div class = "col">
+      <input type="text" [(ngModel)]="estudianteActual.apellido" name="apellido" placeholder="Apellido"> 
+    </div>
+    <div class = "col">
+      <input type="text" [(ngModel)]="estudianteActual.carrera" name="carrera" placeholder="Carrera"> 
+    </div>
+    <div class = "col">
+      <input type="checkbox" [(ngModel)]="estudianteActual.regular" name="regular"> Regular 
+    </div>
+    <div class = "col">
+      <input type="date" [(ngModel)]="estudianteActual.fecha_inscripcion" name="fecha" [value]="estudianteActual.fecha_inscripcion | date:'yyyy-MM-dd'"> 
+    </div>
+    <div class = "col">
+      <button (click)="AgregarEstudiante()">Agregar Alumno</button>  
+    </div>
+  </div>
+</form>
+
+<hr>
+
+

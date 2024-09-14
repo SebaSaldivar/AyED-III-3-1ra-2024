@@ -1,0 +1,29 @@
+<p></p>
+<div class="col-4">
+  <h5>Ingresar</h5>
+  <hr>
+  <form [formGroup]="formularioReactivo" (ngSubmit)="formularioLogin()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+      <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div class="valido" *ngIf="formularioReactivo.controls['contrasena'].dirty && !formularioReactivo.controls['correo'].errors?.['pattern'] && !formularioReactivo.controls['correo'].errors?.['required']">Campo correcto</div>
+      <div class="invalido" *ngIf="formularioReactivo.controls['correo'].dirty && formularioReactivo.controls['correo'].errors?.['required']">Campo obligatorio</div>
+      <div class="invalido" *ngIf="formularioReactivo.controls['correo'].dirty && formularioReactivo.controls['correo'].errors?.['pattern']">El campo correo tiene un formato incorrecto</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+      <input formControlName="contrasena" type="password" class="form-control" id="exampleInputPassword1">
+      <div class="valido" *ngIf="formularioReactivo.controls['contrasena'].dirty && formularioReactivo.controls['contrasena'].valid">Campo correcto</div>
+      <div class="invalido" *ngIf="formularioReactivo.controls['contrasena'].dirty && formularioReactivo.controls['contrasena'].errors?.['required']">Campo obligatorio</div>
+      <div class="invalido" *ngIf="formularioReactivo.controls['contrasena'].dirty && formularioReactivo.controls['contrasena'].errors?.['minlength'] || formularioReactivo.controls['contrasena'].errors?.['maxlength']">La contraseña debe tener entre 3 y 15 caracteres</div>
+    </div>
+    <div class="mb-3 form-check">
+      <input formControlName="recordar" type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Recordar</label>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary me-2">Ingresar</button>
+      <button type="reset" class="btn btn-primary">Borrar</button>
+    </div>
+  </form>
+</div>
